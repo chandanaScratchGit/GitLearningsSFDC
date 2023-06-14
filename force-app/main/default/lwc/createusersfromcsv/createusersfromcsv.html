@@ -1,0 +1,34 @@
+<template>
+    <lightning-card title="Import users">
+        <div style="margin-left:4%;margin:0px auto;width:300px;">
+            <lightning-spinner alternative-text="Loading" if:true={loading}></lightning-spinner>
+            <template if:false={showbutton}>
+                <div>
+                    <lightning-input type="file" label="upload csv file"  multiple="false" accept=".csv" onchange={handleInputFile}></lightning-input>
+                </div>
+            </template>
+        </div>
+        <template if:true={rows.length}>
+            <lightning-datatable title="Preview" key-field="key"
+                                     hide-checkbox-column
+                                     data={rows}
+                                     columns={columns}></lightning-datatable>
+                                  
+            
+            <div class="slds-p-around_small slds-align_absolute-center">
+                <template if:true={_rows}>
+                    <lightning-button variant="neutral"
+                    label="Cancel" disabled={showbutton} title="Cancel" onclick={cancel}
+                    class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="brand" label="Create" title="Create" disabled={showbutton} onclick={createUsers}
+                    class="slds-m-left_x-small"></lightning-button>
+                    <template if:true={showbutton}>
+                        <lightning-button variant="success"
+                        label="Back" title="Back" onclick={Back}
+                        class="slds-m-left_x-small"></lightning-button>
+                    </template>
+                </template>
+            </div>
+        </template>
+    </lightning-card>   
+</template>

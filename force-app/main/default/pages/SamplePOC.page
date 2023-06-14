@@ -1,0 +1,39 @@
+<apex:page >
+  <apex:includeLightning />
+<apex:includeScript value="/support/console/57.0/integration.js"/>
+<apex:includeScript value="/support/console/xdomain/30.0/xdomain.js"/>
+  <div id="vf-container">
+    <!-- your Visualforce content goes here -->
+  </div>
+
+  <script>
+    // wait for the DOM to finish rendering
+    document.addEventListener("DOMContentLoaded", function() {
+       console.log('Hi before');
+      // get the Console Integration Toolkit API object
+      const consoleApi = parent.sforce.console;
+            console.log('Hi after');
+
+      // define the LWC component to be opened
+      const componentName = "c:createusersfromcsv";
+
+      // define any parameters to pass to the component
+      const componentParams = {};
+
+      // define any options for the component's behavior
+      const componentOptions = {
+        recordId: null,
+        isredirect: true,
+        replace: false
+      };
+
+      // define the callback function to execute after the component is loaded
+      const componentCallback = function(response) {
+        console.log("LWC component loaded: ", response);
+      };
+
+      // call the Console API to open the new tab and load the LWC component
+      consoleApi.openPrimaryTab(undefined, "/" + componentName, componentOptions, componentCallback, componentParams);
+    });
+  </script>
+</apex:page>

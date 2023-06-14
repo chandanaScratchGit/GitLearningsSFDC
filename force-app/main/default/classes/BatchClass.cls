@@ -1,3 +1,13 @@
+/**
+ * @description       : 
+ * @author            : chandana
+ * @group             : 
+ * @last modified on  : 06-14-2023
+ * @last modified by  : chandana
+ * Modifications Log
+ * Ver   Date         Author     Modification
+ * 1.0   06-14-2023   chandana   Initial Version
+**/
 global class BatchClass implements Database.Batchable<sObject> {
     global Database.QueryLocator start(Database.BatchableContext bc) {
         // collect the batches of records or objects to be passed to execute

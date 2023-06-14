@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="CREATE USERS">
+        <template if:true={_rows}>
+
+            <template if:false={showcreate}>
+                <div style="margin-left:4%;margin:10px auto;width:300px;color:green;font: size 20px;">
+                    <lightning-formatted-text style="margin-left:4%;margin:10px auto;width:300px;" value={Description}></lightning-formatted-text>
+                </div>
+            </template>
+        </template>         
+        <div style="margin-left:4%;margin:10px auto;width:300px;">
+            <lightning-spinner alternative-text="Loading" if:true={loading}></lightning-spinner>
+            <template if:true={showInputfile}>
+                <div>
+                    <lightning-input type="file" label="UPLOAD CSV"  multiple="false" accept=".csv" onchange={handleInputFile}></lightning-input>
+                </div>
+            </template>
+        </div>
+        <template if:true={rows.length}>
+                <lightning-datatable title="Preview" key-field="key"
+                                        hide-checkbox-column
+                                        data={rows}
+                                        columns={columns}>
+                </lightning-datatable>
+                <template if:true={_rows}>
+                    
+                    <div style="margin-left:4%;margin:10px auto;width:300px;">
+                        <lightning-button variant="neutral"
+                        label="Cancel" disabled={showbutton} title="Cancel" onclick={cancel}
+                        class="slds-m-left_x-small"></lightning-button>
+                        <template if:false={showcreate}>
+                            <lightning-button variant="neutral" label="Next" title="Next" onclick={getProfileandrRoleIDs}
+                            class="slds-m-left_x-small"></lightning-button>
+                        </template>
+                        <template if:true={showcreate}>
+                       <lightning-button variant="brand" label="Create" title="Create" disabled={showbutton} onclick={createUsers}
+                        class="slds-m-left_x-small"></lightning-button>
+                    </template>
+                        <template if:true={showbutton}>
+                            <lightning-button variant="success"
+                            label="Back" title="Back" onclick={Back}
+                            class="slds-m-left_x-small"></lightning-button>
+                        </template>
+                    </div>
+                </template>         
+        </template>
+    </lightning-card>   
+</template>
